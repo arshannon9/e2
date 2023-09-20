@@ -6,6 +6,9 @@
 
 
 ## Outside resources
+Searches:
+- PHP queue (<https://www.educba.com/php-queue/>)
+- PHP manual on Object-Oriented Programming
 
 
 ## Notes for instructor
