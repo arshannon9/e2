@@ -14,7 +14,7 @@
 
     <h2>Game Mechanics</h2>
     <ul>
-        <li>Each player starts with a hand consisting of half of the deck (26 cards), shuffled in a random order.</li>
+        <li>Each player starts with a hand comprising half of the deck (26 cards), shuffled in a random order.</li>
         <li>For each round, each player plays the card from the top of their hand.</li>
         <li>The player who plays the card with the higher value wins the round, keeps both cards, and places them at the
             bottom of their hand.</li>
@@ -36,7 +36,7 @@
         </li>
         <li>The player who ends up with <strong><em>all 52 cards</em></strong> in their hand is declared the winner.
         </li>
-        <li>If the game reaches 1000 rounds, a <strong>STALEMATE is declared</strong>:
+        <li>If the game reaches 1000 rounds without a clear winner, a <strong>STALEMATE is declared</strong>:
             <ul>
                 <li>The player with the most cards in their hand is declared the winner.</li>
                 <li>If the players have the same number of cards, the game ends in a <strong>DRAW</strong>.</li>
