@@ -31,16 +31,15 @@ function main() {
     while (!$is_game_over) {
         // Increment the round counter when each round begins
         $round++;
-        // echo "Round $round\n";
         
         // Initialize round_outcome as empty string
         $round_outcome = '';
 
         // Each player plays a card
         $player1_card = $player1->hand->dequeue();
-        // echo "Player 1: {$player1_card->rank} {$player1_card->suit}\n";
+        
         $player2_card = $player2->hand->dequeue();
-        // echo "Player 2: {$player2_card->rank} {$player2_card->suit}\n";
+        
 
         if ($player1_card->value > $player2_card->value) {
             // If the value of player 1's card is greater than that of player 2, player 1 wins the round and collects the played cards
@@ -87,7 +86,6 @@ function main() {
         $results[] = $result;
 
         // If a player's hand is empty, the game is over and their opponent is declared the winner
-
         if ($player1->hand->isEmpty()) {
             $is_game_over = true;
             $game_outcome = "Player 1 ran out of cards. <strong>Player 2 wins!</strong>";
@@ -107,7 +105,6 @@ function main() {
             }
         }
     }
-
     // Generate HTML table using $results array and send to client
     generate_result_table($results, $round, $game_outcome);
 }
@@ -118,7 +115,6 @@ class Player {
     public $name;
     public $hand;
 
-    // Construct object with player name and hand (implemented using SplQueue)
     public function __construct($name) {
         $this->name = $name;
         $this->hand = new SplQueue();
@@ -141,7 +137,6 @@ class Card {
     // Define how a Card object should be converted to a string
     public function __toString() {
         return "{$this->rank} {$this->suit}";
-    
     }
 }
 
@@ -192,7 +187,7 @@ function shuffle_deck($deck) {
 
 
 // Deals 26 cards to each player to start the game
-function deal_cards(&$deck, &$player1, &$player2) {
+function deal_cards($deck, $player1, $player2) {
     for ($i = 0; $i < 26; $i++) {
         // Remove a card from the deck and add it to player 1's hand
         $card = array_pop($deck);
@@ -206,7 +201,7 @@ function deal_cards(&$deck, &$player1, &$player2) {
 
 
 // Plays the 'war game' when players play cards of equal value
-function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
+function play_war_game($player1, $player1_card, $player2, $player2_card) {
     // Initialize queue to store cards in war chest
     $war_chest = new SplQueue();
     
@@ -222,11 +217,9 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
         for ($i = 0; $i < 3; $i++) {
             // Check if a player's hand is empty before playing each 'face down' card
             if ($player1->hand->isEmpty()) {
-                // echo "Player 2 wins this war!\n";
                 return [$war_chest, $player2];
             }
             if ($player2->hand->isEmpty()) {
-                // echo "Player 1 wins this war!\n";
                 return [$war_chest, $player1];
             }
             $war_chest->enqueue($player1->hand->dequeue());
@@ -243,9 +236,7 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
 
         // Each player plays one card 'face up'
         $player1_faceup_card = $player1->hand->dequeue();
-        // echo "Player 1: {$player1_faceup_card->rank} {$player1_faceup_card->suit}\n";
         $player2_faceup_card = $player2->hand->dequeue();
-        // echo "Player 2: {$player2_faceup_card->rank} {$player2_faceup_card->suit}\n";
 
         // Determine the outcome of the war game
         if ($player1_faceup_card->value > $player2_faceup_card->value) {
@@ -253,18 +244,15 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
             $player1->hand->enqueue($player1_faceup_card);
             $player1->hand->enqueue($player2_faceup_card);
             $war_has_victor = true;
-            // echo "Player 1 wins this war. The game continues...\n";
             return [$war_chest, $player1, $player1_faceup_card, $player2_faceup_card];
         } elseif ($player1_faceup_card->value < $player2_faceup_card->value) {
             // If the value of player 2's 'face up' card is greater than that of player 1, player 2 wins the war game and collects the faceup cards and war chest
             $player2->hand->enqueue($player1_faceup_card);
             $player2->hand->enqueue($player2_faceup_card);
             $war_has_victor = true;
-            // echo "Player 2 wins this war. The game continues...\n";
             return [$war_chest, $player2, $player1_faceup_card, $player2_faceup_card];
         } else {
             // If the values of the played cards are equal, another war is declared, and the played cards are added to the war chest
-            // echo "WAR!!\n";
             $war_chest->enqueue($player1_faceup_card);
             $war_chest->enqueue($player2_faceup_card);
         }
