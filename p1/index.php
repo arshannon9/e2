@@ -53,8 +53,15 @@ function main() {
             $player2->hand->enqueue($player1_card);
             $player2->hand->enqueue($player2_card);
         } else {
-            // If the values of the played cards are equal, war game iniitiated, returns a list including the war_chest and the victor of the war game
-            list($war_chest, $victor, $player1_faceup_card, $player2_faceup_card) = play_war_game($player1, $player1_card, $player2, $player2_card);
+            // If the values of the played cards are equal, war game iniitiated, returns a set including the war_chest, the victor of the war game, and the cards played 'face up' in the war game
+            $result = play_war_game($player1, $player1_card, $player2, $player2_card);
+
+            $war_chest = $result[0];
+
+            // Using isset() ensures that elements only accessed if they exist, avoiding 'undefined array key' error
+            $victor = isset($result[1]) ? $result[1] : null;
+            $player1_faceup_card = isset($result[2]) ? $result[2] : null;
+            $player2_faceup_card = isset($result[3]) ? $result[3] : null;
 
             $round_outcome = "WAR!! {$victor->name} wins this round";
 
@@ -303,13 +310,22 @@ function generate_result_table($results, $round, $game_outcome) {
         if (strpos($result['Round Outcome'], 'WAR') !== false) {
             echo "<tr>";
             echo "<td>WAR</td>";
-            echo "<td><span class='card'>{$result['Player 1 face up']}</span></td>";
-            echo "<td><span class='card'>{$result['Player 2 face up']}</span></td>";
-            echo "<td>{$result['Round Outcome']}</td>";
-            echo "<td>{$result['Player 1 hand']}</td>";
-            echo "<td>{$result['Player 2 hand']}</td>";
+            if ($result['Player 1 hand'] == 0) {
+                echo "<td></td>";
+                echo "<td></td>";
+                echo "<td>Player 1 ran out of cards</td>";
+            } else if ($result['Player 2 hand'] == 0) {
+                echo "<td></td>";
+                echo "<td></td>";
+                echo "<td>Player 2 ran out of cards</td>";
+            } else {
+                echo "<td><span class='card'>{$result['Player 1 face up']}</span></td>";
+                echo "<td><span class='card'>{$result['Player 2 face up']}</span></td>";
+                echo "<td></td>";
+            }
+            echo "<td></td>";
+            echo "<td></td>";
             echo "</tr>";
-            
         }
     }
     echo "</table>";
