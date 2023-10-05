@@ -24,6 +24,10 @@ function main() {
     // Initialize empty array to store results of each round (for use in populating results table)
     $results = [];
 
+    // Initialize variables to store 'face up' cards from war game
+    $player1_faceup_card = null;
+    $player2_faceup_card = null;
+
     while (!$is_game_over) {
         // Increment the round counter when each round begins
         $round++;
@@ -50,7 +54,7 @@ function main() {
             $player2->hand->enqueue($player2_card);
         } else {
             // If the values of the played cards are equal, war game iniitiated, returns a list including the war_chest and the victor of the war game
-            list($war_chest, $victor) = play_war_game($player1, $player1_card, $player2, $player2_card);
+            list($war_chest, $victor, $player1_faceup_card, $player2_faceup_card) = play_war_game($player1, $player1_card, $player2, $player2_card);
 
             $round_outcome = "WAR!! {$victor->name} wins this round";
 
@@ -68,6 +72,8 @@ function main() {
             'Round Outcome' => $round_outcome,
             'Player 1 hand' => $player1->hand->count(),
             'Player 2 hand' => $player2->hand->count(),
+            'Player 1 face up' => $player1_faceup_card,
+            'Player 2 face up' => $player2_faceup_card,
         );
 
         // Add the round result to the results array
@@ -241,14 +247,14 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
             $player1->hand->enqueue($player2_faceup_card);
             $war_has_victor = true;
             // echo "Player 1 wins this war. The game continues...\n";
-            return [$war_chest, $player1];
+            return [$war_chest, $player1, $player1_faceup_card, $player2_faceup_card];
         } elseif ($player1_faceup_card->value < $player2_faceup_card->value) {
             // If the value of player 2's 'face up' card is greater than that of player 1, player 2 wins the war game and collects the faceup cards and war chest
             $player2->hand->enqueue($player1_faceup_card);
             $player2->hand->enqueue($player2_faceup_card);
             $war_has_victor = true;
             // echo "Player 2 wins this war. The game continues...\n";
-            return [$war_chest, $player2];
+            return [$war_chest, $player2, $player1_faceup_card, $player2_faceup_card];
         } else {
             // If the values of the played cards are equal, another war is declared, and the played cards are added to the war chest
             // echo "WAR!!\n";
@@ -292,6 +298,19 @@ function generate_result_table($results, $round, $game_outcome) {
         echo "<td>{$result['Player 1 hand']}</td>";
         echo "<td>{$result['Player 2 hand']}</td>";
         echo "</tr>";
+
+        // Check if this round had a WAR declared using strpos
+        if (strpos($result['Round Outcome'], 'WAR') !== false) {
+            echo "<tr>";
+            echo "<td>WAR</td>";
+            echo "<td><span class='card'>{$result['Player 1 face up']}</span></td>";
+            echo "<td><span class='card'>{$result['Player 2 face up']}</span></td>";
+            echo "<td>{$result['Round Outcome']}</td>";
+            echo "<td>{$result['Player 1 hand']}</td>";
+            echo "<td>{$result['Player 2 hand']}</td>";
+            echo "</tr>";
+            
+        }
     }
     echo "</table>";
 }
