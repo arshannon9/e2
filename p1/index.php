@@ -97,11 +97,11 @@ function main() {
             $is_game_over = true;
             
             if ($player1->hand->count() > $player2->hand->count()) {
-                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Player 1 has more cards. Player 1 wins!";
+                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Player 1 has more cards. <strong>Player 1 wins!</strong>";
             } elseif ($player1->hand->count() < $player2->hand->count()) {
-                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Player 2 has more cards. Player 2 wins!";
+                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Player 2 has more cards. <strong>Player 2 wins!</strong>";
             } else {
-                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Both players have the same number of cards. It is a <strong>DRAW</strong>.";
+                $game_outcome = "<strong>STALEMATE</strong> - maximum number of rounds reached. Both players have the same number of cards. <strong>It is a DRAW</strong>.";
             }
         }
     }

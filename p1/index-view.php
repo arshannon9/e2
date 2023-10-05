@@ -2,14 +2,18 @@
 <html lang="en">
 
 <head>
+
     <title>Project 1 - WAR</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
 <body>
     <h1>Project 1 - WAR</h1>
+
     <h2>Game Mechanics</h2>
+
     <ul>
         <li>Each player starts with a hand comprising half of the deck (26 cards), shuffled in a random order.</li>
         <li>For each round, each player plays the card from the top of their hand.</li>
