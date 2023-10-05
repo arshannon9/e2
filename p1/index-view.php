@@ -2,11 +2,9 @@
 <html lang="en">
 
 <head>
-
     <title>Project 1 - WAR</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>

@@ -261,39 +261,39 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
 
 // Generates HTML for results table using $results array
 function generate_result_table($results, $round, $game_outcome) {
-    echo '<h2>Results</h2>';
-    echo '<ul>
+    echo "<h2>Results</h2>";
+    echo "<ul>
             <li>{$round} rounds played
             </li>
             <li>{$game_outcome}
             </li>
-        </ul>';
+        </ul>";
 
-    echo '<h2>Rounds</h2>';
+    echo "<h2>Rounds</h2>";
     
-    echo '<table>';
+    echo "<table>";
 
     // Add table headers
-    echo '<tr>
+    echo "<tr>
             <th>Round #</th>
             <th>Player 1 Card</th>
             <th>Player 2 Card</th>
             <th>Round Outcome</th>
             <th>Player 1 Hand</th>
             <th>Player 2 Hand</th>
-          </tr>';
+          </tr>";
 
     foreach ($results as $result) {
-        echo '<tr>';
+        echo "<tr>";
         echo "<td>{$result['Round #']}</td>";
         echo "<td><span class='card'>{$result['Player 1 card']}</span></td>";
         echo "<td><span class='card'>{$result['Player 2 card']}</span></td>";
         echo "<td>{$result['Round Outcome']}</td>";
         echo "<td>{$result['Player 1 hand']}</td>";
         echo "<td>{$result['Player 2 hand']}</td>";
-        echo '</tr>';
+        echo "</tr>";
     }
-    echo '</table>';
+    echo "</table>";
 }
 
-require 'index-view.php';
+require "index-view.php";
