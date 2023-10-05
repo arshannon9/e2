@@ -13,8 +13,7 @@
     <ul>
         <li>Each player starts with a hand comprising half of the deck (26 cards), shuffled in a random order.</li>
         <li>For each round, each player plays the card from the top of their hand.</li>
-        <li>The player who plays the card with the higher value wins the round, keeps both cards, and places them at
-            the
+        <li>The player who plays the card with the higher value wins the round, keeps both cards, and places them at the
             bottom of their hand.</li>
         <li>If the players play cards of the same value, <strong>WAR is declared</strong>:
             <ul>
