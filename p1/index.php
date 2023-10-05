@@ -262,12 +262,12 @@ function play_war_game(&$player1, $player1_card, &$player2, $player2_card) {
 // Generates HTML for results table using $results array
 function generate_result_table($results, $round, $game_outcome) {
     echo '<h2>Results</h2>';
-    echo "<ul>
-            <li> <u>Rounds</u>: {$round}
+    echo '<ul>
+            <li>{$round} rounds played
             </li>
-            <li><u>Outcome</u>: {$game_outcome}
+            <li>{$game_outcome}
             </li>
-        </ul>";
+        </ul>';
 
     echo '<h2>Rounds</h2>';
     
