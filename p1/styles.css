@@ -21,11 +21,11 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: green;
 }
 
 tr:nth-child(odd) {
-    background-color: #fff;
+    background-color: red;
 }
 
 .card {
