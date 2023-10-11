@@ -1,0 +1,38 @@
+body {
+    font-family: Garamond, serif;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+    border: 1px solid black;
+}
+
+td {
+    text-align: center;
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+th,
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.card {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 5px;
+    width: 35px;
+    height: 25px;
+}
