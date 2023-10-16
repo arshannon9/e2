@@ -14,6 +14,10 @@
     .incorrect {
         color: red;
     }
+
+    .no-answer {
+        color: blue;
+    }
     </style>
 </head>
 
@@ -21,11 +25,15 @@
 
     <h1>Results</h1>
 
-    <?php if($correct) { ?>
+    <?php if ($haveAnswer == false) { ?>
+    <div class="no-answer">Please enter an answer.</div>
+    <?php } else if ($correct) { ?>
     <div class="correct">You got it correct! :-)</div>
     <?php } else { ?>
-    <div class="incorrect">Incorrect. <a href="index.php">Please try again.</a></p>
+    <div class="incorrect">Sorry, that is incorrect. :-(</p>
         <?php } ?>
+
+        <a href="index.php">Play again...</a>
 
 </body>
 

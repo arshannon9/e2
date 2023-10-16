@@ -8,7 +8,7 @@
 
 <body>
 
-    <form method='GET' action='process.php'>
+    <form method='POST' action='process.php'>
         <h1>Mystery Word Scramble</h1>
 
         <p>Mystery word: kiumppn</p>
