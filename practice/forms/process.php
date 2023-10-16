@@ -1,6 +1,11 @@
 <?php
-$answer = $_POST['answer'];
 
-$correct = $answer == 'pumpkin';
+$answer = $_GET['answer'];
+
+if ($answer == 'pumpkin') {
+    $correct = true;
+} else {
+    $correct = false;
+}
 
 require 'process-view.php';
