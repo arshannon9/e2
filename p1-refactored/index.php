@@ -1,6 +1,17 @@
 <?php
 
+// Initialize game_result as empty string
+$game_outcome = '';
+    
+// Initialize round counter to 0
+$round = 0;
+
+// Initialize empty array to store results of each round (for use in populating results table)
+$results = [];
+
 function main() {
+    global $round, $game_outcome, $results;
+
     // Create deck and shuffle
     $deck = create_deck();
     $shuffled_deck = shuffle_deck($deck);
@@ -14,15 +25,6 @@ function main() {
     
     // Initialize is_game_over flag to false
     $is_game_over = false;
-
-    // Initialize game_result as empty string
-    $game_outcome = '';
-    
-    // Initialize round counter to 0
-    $round = 0;
-    
-    // Initialize empty array to store results of each round (for use in populating results table)
-    $results = [];
 
     // Initialize variables to store 'face up' cards from war game
     $player1_faceup_card = null;
@@ -105,8 +107,6 @@ function main() {
             }
         }
     }
-    // Generate HTML table using $results array and send to client
-    generate_result_table($results, $round, $game_outcome);
 }
 
 
@@ -258,5 +258,7 @@ function play_war_game($player1, $player1_card, $player2, $player2_card) {
         }
     }
 }
+
+main();
 
 require "index-view.php";

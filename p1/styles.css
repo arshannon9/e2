@@ -33,6 +33,6 @@ tr:nth-child(odd) {
     border: 1px solid black;
     display: inline-block;
     padding: 5px;
-    width: 35px;
+    width: 40px;
     height: 25px;
 }
