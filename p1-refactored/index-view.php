@@ -46,11 +46,57 @@
         </li>
     </ul>
 
-    <?php
+    <h2>Results</h2>
+    <ul>
+        <li><?= $round ?> rounds played</li>
+        <li><?= $game_outcome ?></li>
+    </ul>
 
-    main();
+    <h2>Rounds</h2>
 
-    ?>
+    <table>
+        <tr>
+            <th>Round #</th>
+            <th>Player 1 Card</th>
+            <th>Player 2 Card</th>
+            <th>Round Outcome</th>
+            <th>Player 1 Hand</th>
+            <th>Player 2 Hand</th>
+        </tr>
+
+        <?php foreach ($results as $result) { ?>
+        <tr>
+            <td><?php echo $result['Round #'] ?></td>
+            <td><span class='card'><?php echo $result['Player 1 card'] ?></span></td>
+            <td><span class='card'><?php echo $result['Player 2 card'] ?></span></td>
+            <td><?php echo $result['Round Outcome'] ?></td>
+            <td><?php echo $result['Player 1 hand'] ?></td>
+            <td><?php echo $result['Player 2 hand'] ?></td>
+        </tr>
+
+        <?php if (strpos($result['Round Outcome'], 'WAR') !== false) { ?>
+        <tr>
+            <td>WAR</td>
+            <?php if ($result['Player 1 hand'] == 0) { ?>
+            <td></td>
+            <td></td>
+            <td>Player 1 ran out of cards</td>
+            <?php } else if ($result['Player 2 hand'] == 0) { ?>
+            <td></td>
+            <td></td>
+            <td>Player 2 ran out of cards</td>
+            <?php } else { ?>
+            <td><span class='card'><?php echo $result['Player 1 face up'] ?></span></td>
+            <td><span class='card'><?php echo $result['Player 2 face up'] ?></span></td>
+            <td></td>
+            <?php } ?>
+            <td></td>
+            <td></td>
+        </tr>
+        <?php } ?>
+        <?php } ?>
+    </table>
+
 </body>
 
 </html>
