@@ -20,43 +20,55 @@
     <hr>
     <div class="container">
         <div class="dealer-area">
-            <h3>Dealer's Hand:</h3>
+            <h3>DEALER</h3>
             <div class="hand">
                 <?php
-            for ($i = 0; $i < count($dealer->hand); $i++) {
-                // Display the first dealer card face down initially, and the second face up
-                $card = $dealer->hand[$i];
-                if ($i === 0 && $dealer_turn === false) {
-                    echo '<div class="card-back"><img src="' . $card->backImage . '"></div>';
+                if ($dealer_hand !== null && is_array($dealer_hand)) {
+                    for ($i = 0; $i < count($dealer_hand); $i++) {
+                        // Display the first dealer card face down initially, and the second face up
+                        $card = $dealer_hand[$i];
+                        if ($i === 0 && $is_player_turn === true) {
+                            echo '<div class="card-back"><img src="' . $card->backImage . '"></div>';
+                        } else {
+                        echo '<div class="card"><img src="' . $card->frontImage . '"></div>';
+                        }
+                    }
                 } else {
-                    echo '<div class="card"><img src="' . $card->frontImage . '"></div>';
+                    // Handle the case where the dealer's hand is not initialized
+                    echo 'Dealer\'s hand is not available.';
                 }
-            }
             ?>
             </div>
         </div>
 
         <div class="player-area">
-            <h3>Player's Hand:</h3>
+            <h3>PLAYER</h3>
             <div class="hand">
                 <?php
-            foreach ($player->hand as $card) {
-                // Create a container for each card with its front image
-                echo '<div class="card"><img src="' . $card->frontImage . '"></div>';
-            }
+                if ($player_hand !== null && is_array($player_hand)) {
+                    foreach ($player_hand as $card) {
+                        // Create a container for each card with its front image
+                        echo '<div class="card"><img src="' . $card->frontImage . '"></div>';
+                    }
+                } else {
+                    // Handle the case where the dealer's hand is not initialized
+                    echo 'Player\'s hand is not available.';
+                }
             ?>
             </div>
         </div>
 
-        <div class="actions">
-            <button id="hit-button">Hit</button>
-            <button id="stand-button">Stand</button>
-        </div>
-        <div class="bet">
-            <p>Player Bet: <?= $player_bet ?></p>
-        </div>
-        <div class="balance">
-            <p>Player Balance: <?= $player_balance ?></p>
+        <div class='game-controls'>
+            <form method='POST' action='process.php'>
+
+                <fieldset id='action-form'>
+                    <legend>Actions: </legend>
+                    <button type='submit' id='deal-btn' name='action' value='deal'>Deal</button>
+                    <button type='submit' id='hit-btn' name='action' value='hit'>Hit</button>
+                    <button type='submit' id='stay-btn' name='action' value='stay'>Stay</button>
+                </fieldset>
+
+            </form>
         </div>
     </div>
 

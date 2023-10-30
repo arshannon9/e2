@@ -1,6 +1,6 @@
-# Project 1 - WAR
+# Project 2 - BLACKJACK
 + By: Anthony Shannon
-+ URL: <http://e2p1.anthonyrshannon.me>
++ URL: <http://e2p2.anthonyrshannon.me>
 
 ## Game planning
 - Create 52-card deck with each card associated with the appropriate value (using OOP).
@@ -17,14 +17,13 @@
 
 ## Outside resources
 ### Searches:
-- PHP queue (<https://www.educba.com/php-queue/>)
-- PHP manual on:
-    - isset (<https://www.php.net/manual/en/function.isset.php>)
-    - Object-Oriented Programming (<https://www.php.net/manual/en/language.oop5.php>)
-    - Queue/SplQueue (<https://www.php.net/manual/en/class.splqueue.php>)
-    - strpos (<https://www.php.net/manual/en/function.strpos.php>)
+- Rules of Blackjack: <https://bicyclecards.com/how-to-play/blackjack>
+
+
+### Image sources:
+- Playing card front images: <https://byronknoll.blogspot.com/2011/03/vector-playing-cards.html>
+- Playing card back image: <https://www.pngwing.com/en/free-png-tloji>
 
 ### CS50.ai assistance:
-1. Query: "Given the implementation I have [included code for table display], how would I also incorporate the display of the 'face up' cards from the WAR rounds in the Rounds table?"
-2. Query: "I received 'Warning: Undefined array key 2 in /var/www/e2/p1/index.php on line 57'. What problem is this identifying?"
-3. Query: "I have a class Card [included code]. I need to convert the object into a string to display the card in a table. How would I do this?"
+1. Query: "I have a class Card [included code]. I want to be able to display front and back images of each card in my UI. What would be the most memory-efficient way to connect these images with their respective card object?"
+2. Query: "I want to display the images of cards in the player and dealer hand, but I want to show one card in the dealer's hand face down during the player's turn. What would be an effective way to manage this using PHP?"

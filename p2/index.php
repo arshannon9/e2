@@ -1,102 +1,152 @@
 <?php
-include 'Card.php';
-include 'Player.php';
+require 'Card.php';
 
-// Set initial player balance
-$player_balance = 2;
+session_start();
 
-// Initialize player bet
-$player_bet = 0;
+// Initialize player turn to false
+$is_player_turn = false;
 
-// Initialize dealer turn to false
-$dealer_turn = false;
+// Initialize game over tag
+$is_game_over = false;
+
+// Initialize result string
+$result = '';
+
+// Initialize player and dealer hands as arrays
+$player_hand = [];
+$dealer_hand = [];
 
 function main() {
 
-    global $player_balance, $player_bet, $dealer_turn;
+    global $is_player_turn, $is_game_over, $result, $player_hand, $dealer_hand;
 
     // Create deck and shuffle
     $deck = create_deck();
 
-    // Create instances of Player class for player and dealer
-    $player = new Player("Player");
-    $dealer = new Player("Dealer");
+    // Initialize player and dealer hand values
+    $player_total_value = 0;
+    $dealer_total_value = 0;
 
-    // Check if player's balance is above the minimum bet
-    while($player_balance > 1) {
+    // Set player and dealer hands in the session
+    $_SESSION['player_hand'] = $player_hand;
+    $_SESSION['dealer_hand'] = $dealer_hand;
 
-        // Ask player for their bet
-        $player_bet = 0; // Form input using buttons
+    if (!$is_game_over) {
 
         // Deal initial cards
-        for ($i = 0; $i < 2; $i++) {
-            $card = array_pop($deck);
-            array_push($player->hand, $card);
+        if (isset($_SESSION['action'])) {
+            $is_player_turn = true;
+            if ($_SESSION['action'] === 'deal') {
+                for ($i = 0; $i < 2; $i++) {
+                    $card = array_pop($deck);
+                    $player_hand[] = $card;
 
-            $card = array_pop($deck);
-            array_push($dealer->hand, $card);
+                    $card = array_pop($deck);
+                    $dealer_hand[] = $card;
+                }
+                // Check for a natural blackjack
+                if (hasBlackjack($player_hand)) {
+                    $result = 'Player has blackjack!';
+                    $is_player_turn = false;
+                }
+                $player_total_value = calculateHandValue($player_hand);
+                $_SESSION['player_hand'] = $player_hand;
+                var_dump($player_total_value);
+                $dealer_total_value = calculateHandValue($dealer_hand);
+                var_dump($dealer_total_value);
+                $_SESSION['dealer_hand'] = $dealer_hand;
+            } 
+            
+            if ($_SESSION['action'] === 'hit') {
+                // Hit (deal a card)
+                $card = array_pop($deck);
+                $player_hand[] = $card;
+                $player_total_value = calculateHandValue($player_hand);
+                var_dump($player_total_value);
+                $_SESSION['player_hand'] = $player_hand;
+            } 
+            
+            if ($_SESSION['action'] === 'stay') {
+                var_dump($_SESSION['action']);
+                // Stand (end the turn)
+                $_SESSION['player_hand'] = $player_hand;
+                $is_player_turn = false;
+            }
         }
 
-        $player_balance = $player_balance - 1;
-
-        // MAIN GAME LOOP
-
-        // Player's turn
-            // Allow the player to make decisions
-
-                // Hit (draw a card)
-
-                // Stand (end the turn)
-
-                // Double Down (optional, if player's hand qualifies)
-
-                // Split Pairs (optional, if player's hand qualifies)
-
-            // Check for blackjack (a natural 21)
+        // Check for a natural blackjack
+        if (hasBlackjack($player_hand)) {
+            $result = 'Player has blackjack!';
+            $is_player_turn = false;
+        }
+        var_dump($_SESSION['action']);
+    } else {
+        $result = 'Player goes bust!';
+    }
         
-            // Check for bust (total over 21)
+        // Check for bust (total over 21)
 
-            // Update player's hand and display cards
+        // Update player's hand and display cards
 
-    
         // Dealer's turn
-            // Reveal the dealer's face-down card
 
-            // Dealer hits until total is 17 or more
+        // Dealer hits until total is 17 or more
 
-            // Check for blackjack or bust
+        // Check for blackjack or bust
 
-            // Update dealer's hand and display cards
+        // Update dealer's hand and display cards
 
-    
         // Determine the winner
-            // Compare the player's and dealer's hands
+        // Compare the player's and dealer's hands
 
-            // Handle special cases (push and blackjack)
+        // Handle special cases (push and blackjack)
 
-            // Adjust the player's balance based on the outcome
-
-    
         // Reshuffling
-            // Check if it's time to reshuffle the deck
+        // Check if it's time to reshuffle the deck
 
-            // If yes, create a new deck, shuffle it, and continue the game
+        // If yes, create a new deck, shuffle it, and continue the game
 
-    
         // GAME OVER
 
         // Ask the player if they want to play another round
 
-            // If yes, return to the main game loop
+        // If yes, return to the main game loop
 
-            // If no, end the game
-        
-    }
-    // If player balance is less than minimum bet, end the game
+        // If no, end the game
+    
 
     // Display the player's final balance and a farewell message
     
-    return [$player, $dealer];
+    return [$player_hand, $dealer_hand];
+}
+
+// Calculates the total value of a hand
+function calculateHandValue($hand) {
+    $total = 0;
+    $ace_count = 0;
+
+    foreach ($hand as $card) {
+        $total += $card->value;
+        if ($card->rank === 'A') {
+            $ace_count++;
+        }
+    }
+
+    // Handle aces (if the total is over 21)
+    while ($ace_count > 0 && $total > 21) {
+        $total -= 10;
+        $ace_count--;
+    }
+
+    return $total;
+}
+
+// Checks for a natural blackjack
+function hasBlackjack($hand) {
+    if (count($hand) === 2 && calculateHandValue($hand) === 21) {
+        return true;
+    }
+    return false;
 }
 
 // Creates and shuffles a 52-card deck
@@ -142,7 +192,6 @@ function create_deck() {
     return $deck;
 }
 
-
-list($player, $dealer) = main();
+list($player_hand, $dealer_hand) = main();
 
 require "index-view.php";

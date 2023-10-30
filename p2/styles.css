@@ -10,7 +10,26 @@
     margin: 0 -10px;
 }
 
+.dealer-area,
+.player-area {
+    background-color: green;
+}
+
 .hand {
     display: flex;
     flex-direction: row;
+}
+
+#bet-form,
+#action-form {
+    display: inline;
+    width: 325px;
+    justify-items: center;
+}
+
+#deal-btn,
+#hit-btn,
+#stay-btn {
+    width: 32%;
+    height: 25px;
 }
