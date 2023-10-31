@@ -18,8 +18,8 @@
             <h3>Game Instructions</h3>
 
             <ul id='instructions'>
-                <li>Guess whether the value of the dealer's face-down card is higher or lower than the value of your
-                    face-up card.</li>
+                <li>Guess whether the value of your card is higher or lower than the value of the dealer's
+                    face-down card.</li>
                 <li>Click the 'Higher' or 'Lower' button to record your answer.</li>
                 <li><strong>NB: </strong>Aces are high.</li>
             </ul>
