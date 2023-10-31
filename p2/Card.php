@@ -17,6 +17,6 @@ class Card {
 
     // Define how a Card object should be converted to a string
     public function __toString() {
-        return "{$this->rank} {$this->suit}";
+        return "{$this->rank} of {$this->suit}";
     }
 }
