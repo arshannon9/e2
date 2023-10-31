@@ -8,14 +8,20 @@ $deck = create_deck();
 $player_card = array_pop($deck);
 $dealer_card = array_pop($deck);
 $score = 0;
+$new_game = false;
+$result = '';
 
 // Store the dealt cards in the session
 $_SESSION['player_card'] = $player_card;
 $_SESSION['dealer-card'] = $dealer_card;
 
 // Store session variables
-$result = $_SESSION['result'];
-$new_game = $_SESSION['newgame'];
+if (isset($_SESSION['result'])) {
+    $result = $_SESSION['result'];
+}
+if (isset($_SESSION['newgame'])) {
+    $new_game = $_SESSION['newgame'];
+}
 
 // Keep score
 if (isset($_SESSION['score'])) {

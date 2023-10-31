@@ -37,6 +37,7 @@
     </div>
     <hr>
     <div class='container'>
+        <?php if (isset($_SESSION['newgame'])) { ?>
         <?php if ($new_game) { ?>
         <?php if ($score < 100 && $score > -50) { ?>
         <div class='card-display'>
@@ -70,6 +71,7 @@
         <h1 class='win'>Congratulations!! You won!!</h1>
         <?php } elseif ($score <= -50) { ?>
         <h1 class='lose'>Commiserations!! You lost!!</h1>
+        <?php } ?>
         <?php } ?>
         <?php } ?>
 
