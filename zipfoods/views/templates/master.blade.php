@@ -20,7 +20,8 @@
 <body>
 
     <header>
-        <h1><a href="/"><img id='logo' src='/images/zipfoods-logo.png' alt="{{ $app->config('app.name') }} Logo" /></a>
+        <h1><a href="/"><img id='logo' src='/images/zipfoods-logo.png'
+                    alt="{{ $app->config('app.name') }} Logo" /></a>
         </h1>
     </header>
 

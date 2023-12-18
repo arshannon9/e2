@@ -1,11 +1,11 @@
 @extends('templates/master')
 
 @section('title')
-About
+    About
 @endsection
 
 @section('content')
-<h2>About</h2>
+    <h2>About</h2>
 
-<p>ZipFoods is your one-stop-shop for convenient online grocery shopping in the greater Boston area.</p>
+    <p>ZipFoods is your one-stop-shop for convenient online grocery shopping in the greater Boston area.</p>
 @endsection

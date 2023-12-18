@@ -1,11 +1,11 @@
 @extends('templates/master')
 
 @section('title')
-Contact
+    Contact
 @endsection
 
 @section('content')
-<h2>Support & Contact Info</h2>
+    <h2>Support & Contact Info</h2>
 
-<p>Have questions? Email us at {{ $email }}.</p>
+    <p>Have questions? Email us at {{ $email }}.</p>
 @endsection
