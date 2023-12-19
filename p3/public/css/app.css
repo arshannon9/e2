@@ -121,3 +121,8 @@ ul {
 .emoji {
     font-size: 32px;
 }
+
+.round-detail {
+    font-size: 24px;
+    font-weight: 600;
+}

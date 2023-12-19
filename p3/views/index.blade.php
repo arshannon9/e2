@@ -7,6 +7,7 @@
             <h2>Game Instructions</h2>
 
             <p id='game-instructions'>Choose a move and try to defeat the computer. Good luck!</p>
+            <a href='/history'>View Round History</a>
 
             <h3 id='scoring-header'>SCORING</h3>
             <div class='scoring-container'>
@@ -62,14 +63,22 @@
          @if ($player_choice)
         <div class='results'>
             <h4>You chose <strong>{{ ucwords($player_choice) }}</strong>, the computer chose <strong>{{ ucwords($opp_choice) }}</strong>.</h4>
-            @if ($won === true)
+            @if ($won === 1)
                 <h5 class='win'>{{ $outcome }} Congratulations, you won!</h5>
-            @elseif ($won === false)
+            @elseif ($won === 0)
                 <h5 class='lose'>{{ $outcome }} Condolences, you lost!</h5>
-            @elseif ($won === null)
+            @elseif ($won === 2)
                 <h5 class='tie'>{{ $outcome }} It's a tie!</h5>
             @endif
         </div>
+        @endif
+
+        @if($app->errorsExist())
+        <ul class='error alert alert-danger'>
+            @foreach($app->errors() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
         @endif
 
 @endsection
