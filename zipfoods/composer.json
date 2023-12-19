@@ -4,7 +4,13 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "susanbuck/e2core": "^0.1.0"
+        "susanbuck/e2core": "^0.1.0",
+        "fakerphp/faker": "^1.23"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-phpbrowser": "*"
     },
     "autoload": {
         "psr-4": {

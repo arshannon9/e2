@@ -170,6 +170,16 @@ a.product-link:hover {
     padding: 10px;
 }
 
+.review {
+    border: 1px solid var(--black);
+    margin: 5px;
+    padding: 5px;
+}
+
+.review-name {
+    font-weight: 700;
+}
+
 #product-review {
     margin: 20px auto;
     max-width: 75%;

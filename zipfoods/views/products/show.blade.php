@@ -6,7 +6,7 @@
 
 @section('content')
     @if ($reviewSaved)
-        <div class="alert alert-success">Thank you, your review was submitted!</div>
+        <div test='review-confirmation' class="alert alert-success">Thank you, your review was submitted!</div>
     @endif
 
     @if ($app->errorsExist())
@@ -23,23 +23,26 @@
         </p>
 
         <div class='product-price'>${{ $product['price'] }}</div>
+
     </div>
 
     <form method='POST' id='product-review' action='/products/save-review'>
         <h3>Review {{ $product['name'] }}</h3>
         <input type='hidden' name='sku' value='{{ $product['sku'] }}'>
+        <input type='hidden' name='product_id' value='{{ $product['id'] }}'>
+
         <div class='form-group'>
             <label for='name'>Name</label>
-            <input type='text' class='form-control' name='name' id='name' value='{{ $app->old('name') }}'>
+            <input type='text' test='reviewer-name-input' name='name' id='name' value='{{ $app->old('name') }}'>
         </div>
 
         <div class='form-group'>
             <label for='review'>Review</label>
-            <textarea name='review' id='review' class='form-control'>{{ $app->old('review') }}</textarea>
+            <textarea test='review-textarea' name='review' id='review' class='form-control'>{{ $app->old('review') }}</textarea>
             (Min: 200 characters)
         </div>
 
-        <button type='submit' class='btn btn-primary'>Submit Review</button>
+        <button type='submit' test='review-submit-button' class='btn btn-primary'>Submit Review</button>
     </form>
 
     @if ($app->errorsExist())
@@ -49,6 +52,21 @@
             @endforeach
         </ul>
     @endif
+
+    <div id='reviews'>
+        <h3>What our customers think...</h3>
+
+        @if (!$reviews)
+            There are no reviews for this product yet.
+        @endif
+
+        @foreach ($reviews as $review)
+            <div class='review'>
+                <div class='review-name' test='review-name'>{{ $review['name'] }}</div>
+                <div class='review-content' test='review-content'>{{ $review['review'] }}</div>
+            </div>
+        @endforeach
+    </div>
 
     <a href='/products'>&larr; Return to all products</a>
 @endsection
