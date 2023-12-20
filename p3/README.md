@@ -8,6 +8,9 @@
 + [ ] I am taking this course for undergraduate credit and have opted out of integrating testing into my application
 
 ## Outside resources
+### Frameworks:
+- Bootstrap
+
 ### Searches:
 - What are the rules of Rock, Paper, Scissors, Lizard, Spock: <https://adams.osu.edu/sites/adams/files/imce/4-H/STEM_Camp/Rock%20Paper%20Scissors%20Lizard%20Spock.pdf>
 
