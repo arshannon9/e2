@@ -26,6 +26,7 @@ class AppController extends Controller
      */
     public function process()
     {
+        # Form validation
         $this->app->validate([
             'player_choice' => 'required'
         ]);
@@ -110,6 +111,7 @@ class AppController extends Controller
             }
         }
 
+        # Persist rounds data to database
         $this->app->db()->insert('rounds', [
             'player_choice' => $player_choice,
             'opp_choice' => $opp_choice,
@@ -134,7 +136,6 @@ class AppController extends Controller
     {
         $rounds = $this->app->db()->all('rounds');
 
-        // Pass the data to your view/template for rendering
         return $this->app->view('history', ['rounds' => $rounds]);
     }
 

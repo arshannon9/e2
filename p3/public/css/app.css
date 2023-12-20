@@ -1,17 +1,19 @@
-#logo {
-    width:500px;
-    margin: 20px;
-}
-
-header {
-    text-align: center;
-    margin-top: 20px;
-}
 
 /* Typography */
 body {
     font-family: Garamond, serif;
     background-color: ivory;
+}
+
+/* Header */
+#logo {
+    width: 400px;
+    margin: 20px 20px 0 20px;
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Lists */
@@ -30,9 +32,11 @@ ul {
 /* Buttons */
 .btn {
     font-family: Garamond, serif;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     font-weight: 700;
     text-align: center;
+    align-items: center;
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
@@ -41,34 +45,21 @@ ul {
     font-size: 1rem;
     line-height: 1.5;
     border-radius: 0.25rem;
-    width: 100px;
+    width: 120px;
     margin: 0 40px 0 40px;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.btn:hover {
-    cursor: pointer;
-}
-
-.btn:focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+.btn.btn-warning#player-choice {
+    margin: auto;
 }
 
 /* Button Row */
-.button-row {
-    display: flex;
-    align-items: center;
-}
-
-/* Layout Containers */
-.game-controls {
+.choices-row {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    margin: 20px;
-    padding: 15px;
+    justify-content: space-between;
 }
 
 /* Results */
@@ -99,30 +90,37 @@ ul {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 25px;
 }
 
-.scoring-container {
-    display: flex;
-    flex-direction: row;
-}
-
-#scoring-header {
-    margin-top: 30px;
-}
-
-.scoring-list {
-    margin: 0 11px 20px 11px;
-}
+/* Instructions and Choices */
 
 #game-instructions {
-    font-size: large;
+    font-size: 20px;
 }
 
-.emoji {
+#instructions-header,
+#choices-header {
+    margin-top: 30px;
+    font-weight: 600;
+}
+
+.choice-emoji {
     font-size: 32px;
 }
 
+.choices-list {
+    margin: 0 22px 20px 22px;
+    width: auto;
+}
+
+
+/* Rounds */
 .round-detail {
     font-size: 24px;
     font-weight: 600;
+}
+
+#round-history-link {
+    margin-top: 20px;
 }

@@ -11,7 +11,7 @@
             <ul>
             
             @foreach($rounds as $round)
-                <li><a href='/round?id={{ $round['id'] }}'>{{ $round['timestamp'] }}</li>
+                <li><a href='/round?id={{ $round['id'] }}' test='round-link'>{{ $round['timestamp'] }}</li>
             @endforeach
             
             </ul>
